@@ -21,7 +21,7 @@ function Login() {
   const onFinish = (values) => {
     axios({
       method: "post",
-      url: "http://localhost:8080/user/login",
+      url: `${BASE_URL}/user/login`,
       data: {
         email: values.email,
         password: values.password,
