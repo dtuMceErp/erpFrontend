@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Tag, Input, Button, Space, Typography, message } from "antd";
+import { Table, Tag, Input, Button, Space, Typography, message, Modal } from "antd";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import axios from "axios";
@@ -19,18 +19,58 @@ function CustomTable() {
         const data = res.data.body.documents;
         const count = res.data.body.count;
         setTableData(data.map(element => {return {
+          serialNo: element.serialNo,
           key:element._id, //key prop was missing previously
           title:element.title,
           description:element.description,
           url:element.url,
           tags:element.tags,
           category:element.category,
+          id:element._id,
         }}));
         settotalcount(count);
       });
     }
     getTableData();
   }, []);
+
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState('Are you sure you want to delete this notice?');
+  const [toBeDeleted, setToBeDeleted] = useState('');
+
+  const showModal = (id) => {
+    setToBeDeleted(id);
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setModalText('Deleting');
+    setConfirmLoading(true);
+    axios({
+      method: "delete",
+      url: String(BASE_URL + "/notice/delete"),
+      data: {},
+      params: {id: toBeDeleted},
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((res) => {
+      setConfirmLoading(false);
+      setVisible(false);
+      if(res.status === 200){
+        message.success('Notice deleted successfully');
+        setTableData(tableData.filter(element => element.id !== toBeDeleted));
+      }
+    }).catch((err) => {
+      setConfirmLoading(false);
+      setVisible(false);
+      message.error('Error deleting notice');
+    }
+    );
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
 
   const copyUrl=(url) =>{
 
@@ -112,6 +152,12 @@ function CustomTable() {
 
   const headings = [
     {
+      title: "Serial No.",
+      dataIndex: "serialNo",
+      key: "serialNo",
+      ...getColumnSearchProps("serialNo"),
+    },
+    {
       title: "Title",
       dataIndex: "title",
       key: "title",
@@ -174,6 +220,27 @@ function CustomTable() {
           {url === "" ? <div>No File</div> : <div onClick={()=>copyUrl(url)}>Copy URL</div>}
         </div>
       ),
+    },
+    {
+      title: "Delete",
+      dataIndex: "id",
+      key: "delete",
+      render: (id) => (
+        <>
+        <Button type="primary" danger ghost onClick={() => showModal(id)}>
+         {"Delete"}
+        </Button>
+        <Modal
+        title="Delete Notice"
+        visible={visible}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+      >
+        <p>{modalText}</p>
+      </Modal>
+      </>
+      ),          
     },
   ];
   return (

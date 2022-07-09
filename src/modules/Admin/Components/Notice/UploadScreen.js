@@ -43,6 +43,7 @@ export function UploadScreen() {
     setIsDisabled(true);
     if (!is_upload_form_valid(values)) return;
     const formData = new FormData();
+    formData.append("serialNo", values.serialNo);
     formData.append("title", values.title);
     formData.append("description", values.description);
     formData.append("important", values.important ? values.important : false);
@@ -61,6 +62,7 @@ export function UploadScreen() {
         setIsDisabled(false);
         if (res.status === 201) {
           form.resetFields();
+          setFile("");
           clearArray(tagsArray);
           message.success("Notice was added sucessfully.");
         }
@@ -85,6 +87,10 @@ export function UploadScreen() {
         form={form}
         name="control-hooks"
       >
+        <Form.Item label="S. No." name="serialNo" required={true}>
+          <Input required />
+        </Form.Item>
+
         <Form.Item label="Title" name="title" required={true}>
           <Input required />
         </Form.Item>
