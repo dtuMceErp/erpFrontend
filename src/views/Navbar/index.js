@@ -36,12 +36,12 @@ function Navbar() {
         }}
       />
       <div className="userinfo">
-      <a
+      {/* <a
           className="ant-dropdown-link" href="#*"
           onClick={(event) => (window.location.href="/#")}
         >
           <span style={{ margin: "20px" }}>Notification</span>
-        </a>
+        </a> */}
         <a
           className="ant-dropdown-link" href="#*"
           onClick={(event) => (window.location.href = "/login")}

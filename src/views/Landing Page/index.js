@@ -743,7 +743,7 @@ function LandingPage() {
         <br />
         <br />
         <br />
-        <section className="features section">
+        {/* <section className="features section">
           <div className="container">
             <div className="features-inner section-inner">
               <div className="features-header text-center">
@@ -962,7 +962,7 @@ function LandingPage() {
               />
             </svg>
           </div>
-          <div className="container">
+          {/* <div className="container">
             <div className="testimonials-inner section-inner">
               <h2 className="section-title mt-0 text-center">Our Team</h2>
               <div className="testimonials-wrap">
@@ -1040,9 +1040,9 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section className="newsletter section text-light">
+          </div> 
+        </section> */}
+        {/* <section className="newsletter section text-light">
           <div className="container-sm">
             <div className="newsletter-inner section-inner">
               <div className="newsletter-header text-center">
@@ -1054,7 +1054,7 @@ function LandingPage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <footer className="site-footer">
         <div className="container">
@@ -1062,7 +1062,7 @@ function LandingPage() {
             <div className="brand footer-brand">
               <h4 className="text-white">Department of Applied Mathematics</h4>
             </div>
-            <ul className="footer-links list-reset">
+            {/* <ul className="footer-links list-reset">
               <li>
                 <a href="#*">Contact</a>
               </li>
@@ -1122,9 +1122,9 @@ function LandingPage() {
                   </svg>
                 </a>
               </li>
-            </ul>
+            </ul> */}
             <div className="footer-copyright">
-              © 2021 ERPAM, all rights reserved
+              © 2022 ERPAM, all rights reserved
             </div>
           </div>
         </div>
