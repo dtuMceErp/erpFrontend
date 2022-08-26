@@ -26,6 +26,7 @@ function CustomTable() {
           url:element.url,
           tags:element.tags,
           category:element.category,
+          downloadUrl: element.downloadUrl,
           id:element._id,
         }}));
         settotalcount(count);
@@ -218,6 +219,16 @@ function CustomTable() {
       render: (url) => (
         <div>
           {url === "" ? <div>No File</div> : <div onClick={()=>copyUrl(url)}>Copy URL</div>}
+        </div>
+      ),
+    },
+    {
+      title:"Download",
+      dataIndex:"downloadUrl",
+      key:"downloadUrl",
+      render : (downloadUrl)=>(
+        <div>
+          {downloadUrl==="" ? <div>No File</div>: <a href={downloadUrl} target="blank">Download</a>}
         </div>
       ),
     },

@@ -184,7 +184,6 @@ function Dashboard(props) {
   }
 
   function loggingOut() {
-    console.log("logging Out");
     remove_token();
     history.push("/");
   }
