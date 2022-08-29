@@ -28,6 +28,8 @@ function CustomTable() {
           category:element.category,
           downloadUrl: element.downloadUrl,
           id:element._id,
+          year: element.createdAt.substring(0,4),
+          date: element.createdAt.substring(0,10),
         }}));
         settotalcount(count);
       });
@@ -173,7 +175,18 @@ function CustomTable() {
       key: "description",
       ...getColumnSearchProps("description"),
     },
-
+    {
+      title:"Date",
+      dataIndex: "date",
+      key:"date",
+      ...getColumnSearchProps("date"),
+    },
+    {
+      title:"Year",
+      dataIndex: "year",
+      key:"year",
+      ...getColumnSearchProps("year"),
+    },
     {
       title: "Tags",
       dataIndex: "tags",
