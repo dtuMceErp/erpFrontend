@@ -40,6 +40,7 @@ import {
   MailFilled,
   ProfileFilled,
   TeamOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
 import { Avatar, Spin } from "antd";
 import NoticeController from "../../../src/modules/Admin/Components/Notice/NoticeController";
@@ -58,7 +59,6 @@ import AdminDashboard from "../../modules/Admin/Components/Dashboard";
 import { BASE_URL } from "../../@constant/config";
 import SubMenu from "antd/lib/menu/SubMenu";
 const { Header, Footer, Sider, Content } = Layout;
-// const { SubMenu } = Menu;
 
 function Dashboard(props) {
   const history = useHistory();
@@ -160,6 +160,13 @@ function Dashboard(props) {
     }
   }
 
+  function studentPageController(x) {
+    if(x===1) {
+      return <StudentProfile/>
+    }
+  }
+
+
   useEffect(() => {
     setlogined(checklogin());
   },
@@ -222,11 +229,14 @@ function Dashboard(props) {
             {(() => {
               if (role === "Student") {
                 return (
+                  <div>
+
                   <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-                    <Menu.Item key="1" icon={<PieChartOutlined  />}>
+                    <Menu.Item key="1" icon={<PieChartOutlined/>} onClick={() => pageController(1)}>
                       Profile Details
                     </Menu.Item>
                   </Menu>
+                  </div>
                 );
               }
               else if (role === "Admin") {
@@ -411,20 +421,14 @@ function Dashboard(props) {
               <Suspense fallback={<Spin />}>
                 {(() => {
                   if (role === "Student") {
-                    return <StudentProfile />;
+                    return studentPageController(PageView);
                   } else if (role === "Admin") {
                     return adminPageController(PageView);
                   } else if (role === "Faculty") {
                     SetFacultyData();
                     return faculityPageController(PageView);
-                    // return <div>BC KU NAHI AA RHA</div>;
                   }
                 })()}
-                {/* {role === "Student" ? (
-                 
-                ) : (
-                  adminPageController(PageView)
-                )} */}
               </Suspense>
             </Content>
             <Footer style={{ textAlign: "center" }}>

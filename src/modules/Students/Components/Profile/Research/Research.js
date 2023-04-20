@@ -26,9 +26,8 @@ function Research(props) {
   const [facultyData, setfacultyData] = useState(null);
 
   useEffect(() => {
-    // console.log("data fetching");
     getData();
-  },);
+  },[]);
 
   const getData = () => {
     axios({
@@ -41,7 +40,6 @@ function Research(props) {
     })
       .then((res) => {
         let data = res.data.body;
-        // console.log(data);
         setfacultyData(data);
       })
       .catch((err) => {

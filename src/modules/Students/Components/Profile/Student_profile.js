@@ -12,7 +12,7 @@ import {
 } from "antd";
 import Projects from "./Project/Projects";
 import Achievement from "./Achievement/Achievement";
-import Certicicaation from "./Certification/Certification";
+import Certification from "./Certification/Certification";
 import Research from "./Research/Research";
 import Experience from "./Experience/Experience";
 import axios from "axios";
@@ -75,7 +75,7 @@ function Student_profile() {
   useEffect(() => {
     getstudentDetailsData();
   }, 
-  // [updateNow]
+  [updateNow]
   );
 
   if (studentDetails === null) return <Spin />;
@@ -135,7 +135,7 @@ function Student_profile() {
 
             <Divider />
             <Row>
-              <Certicicaation forceUpdateHandler={forceUpdateHandler} />
+              <Certification forceUpdateHandler={forceUpdateHandler} />
             </Row>
           </div>
           <div
@@ -610,12 +610,6 @@ function Student_profile() {
                                     ? details.publicationDate.substring(0, 10)
                                     : "On Going"
                                 }
-                              />
-                            </Col>
-                            <Col span={12}>
-                              <DescriptionItem
-                                title="Faculty"
-                                content={details.faculty}
                               />
                             </Col>
                           </Row>

@@ -52,7 +52,7 @@ function Research_Update(props) {
       });
   };
 
-  useEffect(() => getData(),);
+  useEffect(() => getData(),[]);
 
   function settingPublicationDate(date, dateString) {
     setpublicationDate(dateString);
