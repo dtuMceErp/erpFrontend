@@ -98,12 +98,12 @@ function Publications(props) {
 
   function showDrawer() {
     setform_visible(true);
-    console.log(form_visible);
+    // console.log(form_visible);
   }
 
   function onClose() {
     setform_visible(false);
-    console.log(form_visible);
+    // console.log(form_visible);
   }
   const data = useSelector((state) => state.FacultyReducer.facultyData);
 

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Form, Input, Button, Divider, Row, message } from "antd";
+import { Form, Input, Button, Divider, Row, message, Switch } from "antd";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../../@constant/config";
 
 function Academics(props) {
   const data = useSelector((state) => state.FacultyReducer.facultyData);
-  const [isOngoingPG, setisOngoingPG] = useState();
-  const [isOngoingPHD, setisOngoingPHD] = useState();
+  const [isOngoingPG, setisOngoingPG] = useState(true);
+  const [isOngoingPHD, setisOngoingPHD] = useState(true);
 
   const token = localStorage.getItem("ERPAM_TOKEN");
 
   useEffect(() => {
     if (data) {
       setisOngoingPG(
-        data?.faculty?.academicQualifications?.postGraduateDegree?.isOngoing ||
-          " "
+        data?.faculty?.academicQualifications?.postGraduateDegree?.isOngoing
       );
       setisOngoingPHD(
-        data?.faculty?.academicQualifications?.PHD?.isOngoing || " "
+        data?.faculty?.academicQualifications?.PHD?.isOngoing
       );
     }
   }, [data],);
@@ -27,13 +26,13 @@ function Academics(props) {
     props.forceUpdateHandler();
   }
 
-  // function iog(checked) {
-  //   setisOngoingPG(checked);
-  // }
+  function iog(checked) {
+    setisOngoingPG(checked);
+  }
 
-  // function iogPHD(checked) {
-  //   setisOngoingPHD(checked);
-  // }
+  function iogPHD(checked) {
+    setisOngoingPHD(checked);
+  }
 
   const onFinishGD = (values) => {
     let data = {};
@@ -42,6 +41,7 @@ function Academics(props) {
       university: values.university,
       passingYear: values.passingYear,
       degree: values.degree,
+      isOngoing:false,
       specialization: values.specialization,
     };
 
@@ -86,7 +86,6 @@ function Academics(props) {
       },
     })
       .then((res) => {
-        // console.log(data);
         if (res.status === 200) {
           message.success("Post Graduation Degree updated");
         }
@@ -119,7 +118,6 @@ function Academics(props) {
       },
     })
       .then((res) => {
-        // console.log(data);
         if (res.status === 200) {
           message.success("PHD updated");
         }
@@ -138,9 +136,6 @@ function Academics(props) {
 
   return (
     <div>
-      <div>
-        {isOngoingPG} {isOngoingPHD}
-      </div>
       <div
         style={{
           background: "white",
@@ -221,6 +216,13 @@ function Academics(props) {
               <Input required />
             </Form.Item>
           </Row>
+          <Form.Item
+              label="Is Ongoing"
+              name="isOngoing"
+              required={true}
+            >
+              <Switch checked={isOngoingPG} onChange={iog}></Switch>
+            </Form.Item>
           <Form.Item label="Degree" name="degree" required={true}>
             <Input required />
           </Form.Item>
@@ -270,7 +272,13 @@ function Academics(props) {
               <Input required />
             </Form.Item>
           </Row>
-
+          <Form.Item
+              label="Is Ongoing"
+              name="isOngoing"
+              required={true}
+            >
+              <Switch checked={isOngoingPHD} onChange={iogPHD}></Switch>
+            </Form.Item>
           <Form.Item
             label="Specialization"
             name="specialization"

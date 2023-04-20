@@ -1,23 +1,17 @@
 import React, { Fragment } from "react";
 import "./Login.css";
-import { Button,
-  // Row,
-  Input, Form, Checkbox, message } from "antd";
+import { Button,Input, Form, Checkbox, message } from "antd";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import {
-  set_token,
-  // get_user_name,
-  // get_user_role,
-} from "../../@helper/localstorage";
+import { get_user_role, set_token} from "../../@helper/localstorage";
 import Navbar from "../Navbar/index";
 import { BASE_URL } from "../../@constant/config";
-// import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const FormItem = Form.Item;
 
 function Login() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const history = useHistory();
   const onFinish = (values) => {
     axios({
@@ -34,26 +28,24 @@ function Login() {
           let token = res.data.body.token;
 
           set_token(token);
-          // let username = get_user_name();
-          // let ss = get_user_role();
-          // console.log(localStorage.getItem("ERPAM_TOKEN"));
-          // if (ss === "Faculty") {
-          //   axios({
-          //     method: "get",
-          //     url: "http://localhost:8080/faculty",
-          //     headers: {
-          //       Authorization: `Bearer ${token}`,
-          //       "Content-Type": "application/json",
-          //     },
-          //   }).then((res) => {
-          //     let data = res.data.body;
+          let ss = get_user_role();
+          if (ss === "Faculty") {
+            axios({
+              method: "get",
+              url: "http://localhost:8080/faculty",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            }).then((res) => {
+              let data = res.data.body;
 
-          //     dispatch({
-          //       type: "SET_FACULTY_DATA",
-          //       facultyData: data,
-          //     });
-          //   });
-          // }
+              dispatch({
+                type: "SET_FACULTY_DATA",
+                facultyData: data,
+              });
+            });
+          }
 
           message.success("Login Successful");
           history.push("/dashboard");

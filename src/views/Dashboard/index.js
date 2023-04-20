@@ -33,15 +33,13 @@ import {
   UserOutlined,
   LogoutOutlined,
   DiffOutlined,
-} from "@ant-design/icons";
-import {
-  // FundFilled,
-  // ProfileFilled,
-  // MailFilled,
-  // IdcardFilled,
-  // ReadFilled,
-  // VideoCameraOutlined,
-  // CommentOutlined,
+  IdcardFilled,
+  ReadFilled,
+  FundFilled,
+  VideoCameraOutlined,
+  MailFilled,
+  ProfileFilled,
+  TeamOutlined,
 } from "@ant-design/icons";
 import { Avatar, Spin } from "antd";
 import NoticeController from "../../../src/modules/Admin/Components/Notice/NoticeController";
@@ -58,6 +56,7 @@ import {
 import { useDispatch } from "react-redux";
 import AdminDashboard from "../../modules/Admin/Components/Dashboard";
 import { BASE_URL } from "../../@constant/config";
+import SubMenu from "antd/lib/menu/SubMenu";
 const { Header, Footer, Sider, Content } = Layout;
 // const { SubMenu } = Menu;
 
@@ -221,15 +220,16 @@ function Dashboard(props) {
             <div className="logo">{role}</div>
             <br />
             {(() => {
-              // if (role === "Student") {
-              //   return (
-              //     <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-              //       <Menu.Item key="1" icon={<PieChartOutlined Link />}>
-              //         Profile Details
-              //       </Menu.Item>
-              //     </Menu>
-              //   );
-              // } else if (role === "Admin") {
+              if (role === "Student") {
+                return (
+                  <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+                    <Menu.Item key="1" icon={<PieChartOutlined  />}>
+                      Profile Details
+                    </Menu.Item>
+                  </Menu>
+                );
+              }
+              else if (role === "Admin") {
                 return (
                   <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
                     <Menu.Item
@@ -247,7 +247,7 @@ function Dashboard(props) {
                       Notices
                     </Menu.Item>
 
-                    {/* <SubMenu
+                    <SubMenu
                       key="sub2"
                       icon={<TeamOutlined />}
                       title="Students"
@@ -297,88 +297,85 @@ function Dashboard(props) {
                       <Menu.Item key="14" onClick={() => pageController(10)}>
                         Create
                       </Menu.Item>
-                    </SubMenu> */}
+                    </SubMenu>
                   </Menu>
                 );
-              
-              
-              // else if (role === "Faculty") {
-              //   return (
-              //     <div>
-              //       <Menu
-              //         theme="dark"
-              //         defaultSelectedKeys={["1"]}
-              //         mode="inline"
-              //       >
-              //         // {/* <Menu.Item key="1" icon={<AppstoreFilled Link />}>
-              //         //   Dashboard
-              //         // </Menu.Item> */}
-              //         <Menu.Item
-              //           key="8"
-              //           icon={<IdcardFilled Link />}
-              //           onClick={() => pageController(1)}
-              //         >
-              //           Personal
-              //         </Menu.Item>
-              //         <Menu.Item
-              //           key="6"
-              //           icon={<ReadFilled Link />}
-              //           onClick={() => pageController(7)}
-              //         >
-              //           Academics
-              //         </Menu.Item>
-              //         <Menu.Item
-              //           key="3"
-              //           icon={<FundFilled Link />}
-              //           onClick={() => pageController(3)}
-              //         >
-              //           Experience
-              //         </Menu.Item>
-              //         <Menu.Item
-              //           key="4"
-              //           icon={<ProfileFilled Link />}
-              //           onClick={() => pageController(4)}
-              //         >
-              //           Publications
-              //         </Menu.Item>
-              //         <Menu.Item
-              //           key="5"
-              //           icon={<MailFilled Link />}
-              //           onClick={() => pageController(5)}
-              //         >
-              //           Professional Activities
-              //         </Menu.Item>
-              //         <SubMenu
-              //           key="sub4"
-              //           icon={<VideoCameraOutlined />}
-              //           title="Meetings"
-              //         >
-              //           <Menu.Item key="11" onClick={() => pageController(11)}>
-              //             Overview
-              //           </Menu.Item>
-              //           <Menu.Item key="12" onClick={() => pageController(12)}>
-              //             Call
-              //           </Menu.Item>
-              //           <Menu.Item key="15" onClick={() => pageController(15)}>
-              //             Edit
-              //           </Menu.Item>
-              //         </SubMenu>
-              //         <SubMenu
-              //           key="sub5"
-              //           icon={<TeamOutlined />}
-              //           title="Committee"
-              //         >
-              //           <Menu.Item key="13" onClick={() => pageController(10)}>
-              //             Overview
-              //           </Menu.Item>
-                       // {/* <Menu.Item key="14" onClick={() => pageController(10)}>
-                       // Create
-                       // </Menu.Item> */}
-                    //   </SubMenu>
-                    // </Menu>
-                //   </div>
-                // );
-              
+              }
+              else if (role === "Faculty") {
+                return (
+                  <div>
+                    <Menu
+                      theme="dark"
+                      defaultSelectedKeys={["1"]}
+                      mode="inline"
+                    >
+                      {/* <Menu.Item key="1" icon={<AppstoreFilled Link/>}>  Dashboard</Menu.Item> */}
+                      <Menu.Item
+                        key="8"
+                        icon={<IdcardFilled  />}
+                        onClick={() => pageController(1)}
+                      >
+                        Personal
+                      </Menu.Item>
+                      <Menu.Item
+                        key="6"
+                        icon={<ReadFilled  />}
+                        onClick={() => pageController(7)}
+                      >
+                        Academics
+                      </Menu.Item>
+                      <Menu.Item
+                        key="3"
+                        icon={<FundFilled  />}
+                        onClick={() => pageController(3)}
+                      >
+                        Experience
+                      </Menu.Item>
+                      <Menu.Item
+                        key="4"
+                        icon={<ProfileFilled  />}
+                        onClick={() => pageController(4)}
+                      >
+                        Publications
+                      </Menu.Item>
+                      <Menu.Item
+                        key="5"
+                        icon={<MailFilled  />}
+                        onClick={() => pageController(5)}
+                      >
+                        Professional Activities
+                      </Menu.Item>
+                      {/* <SubMenu
+                        key="sub4"
+                        icon={<VideoCameraOutlined />}
+                        title="Meetings"
+                      >
+                        <Menu.Item key="11" onClick={() => pageController(11)}>
+                          Overview
+                        </Menu.Item>
+                        <Menu.Item key="12" onClick={() => pageController(12)}>
+                          Call
+                        </Menu.Item>
+                        <Menu.Item key="15" onClick={() => pageController(15)}>
+                          Edit
+                        </Menu.Item>
+                      </SubMenu> */}
+                      {/* <SubMenu
+                        key="sub5"
+                        icon={<TeamOutlined />}
+                        title="Committee"
+                      >
+                        <Menu.Item key="13" onClick={() => pageController(10)}>
+                          Overview
+                        </Menu.Item>
+                       <Menu.Item key="14" onClick={() => pageController(10)}>
+                       Create
+                       </Menu.Item>
+                      </SubMenu> */}
+                    </Menu>
+                  </div>
+                );
+              }
             })()}
           </Sider>
           <Layout

@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../../@constant/config";
 import axios from "axios";
-// import moment from "moment";
+import moment from "moment";
 
-// const dateFormat = "YYYY-MM-DD";
+const dateFormat = "YYYY-MM-DD";
 
 function Personal(props) {
   const [form] = Form.useForm();
@@ -115,13 +115,18 @@ function Personal(props) {
           <Form.Item label="Spouse's Name" name="spouseName">
             <Input />
           </Form.Item>
-
           <div> Date of Birth</div>
           <DatePicker
-            onChange={settingDate}
-            format="MM-DD-YYYY"
-          />
-
+              onChange={settingDate}
+              defaultValue={moment(
+                data.faculty.personalInformation.dob
+                  ? data.faculty.personalInformation.dob.substring(0, 10)
+                  : "2000-01-01",
+                dateFormat
+              )}
+              format={dateFormat}
+              style={{ margin: "10px", marginLeft: "0px" }}
+            />
           <Form.Item label="Category" name="category">
             <Radio.Group>
               <Radio.Button value="Gen">Gen</Radio.Button>

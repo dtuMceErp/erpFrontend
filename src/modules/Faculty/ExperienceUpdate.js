@@ -44,12 +44,12 @@ function Experience_Update(props) {
 
   function showDrawer() {
     setform_visible(true);
-    console.log(form_visible);
+    // console.log(form_visible);
   }
 
   function onClose() {
     setform_visible(false);
-    console.log(form_visible);
+    // console.log(form_visible);
   }
 
   function iog(checked) {
