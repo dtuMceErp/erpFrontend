@@ -94,7 +94,10 @@ function Login() {
                 <div>Sign in</div>
               </Button>
               <div style={{ textAlign: "center" }}>
-                Does not have a account? <a href="/signup">Sign Up</a>
+                Register As a Faculty? <a href="/signup">Click Here</a>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                Register As a Student? <a href="/student/signup">Click Here</a>
               </div>
             </Form>
           </div>

@@ -207,7 +207,7 @@ function Student_Delete(props) {
     <div>
       <div style={{ margin: "16px 0", display: "flex" }}>
         <p style={{ float: "left", fontSize: "22px", marginTop: "20px" }}>
-          List of non-verified students
+          List of active students
         </p>
         <div
           className="switch"

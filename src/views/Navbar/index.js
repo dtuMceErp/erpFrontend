@@ -25,16 +25,18 @@ function Navbar() {
       className="site-layout-background"
       style={{ padding: 0, background: "#fff" }}
     >
-      <img
-        src="../assets/logo.png"
-        alt="logo"
-        style={{
-          height: "45px",
-          width: "auto",
-          float: "left",
-          margin: "8px 2px 2px 20px",
-        }}
-      />
+      <a href="/">
+        <img
+          src="../assets/logo.png"
+          alt="logo"
+          style={{
+            height: "45px",
+            width: "auto",
+            float: "left",
+            margin: "8px 2px 2px 20px",
+          }}
+        />
+      </a>
       <div className="userinfo">
       {/* <a
           className="ant-dropdown-link" href="#*"

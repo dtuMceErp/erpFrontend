@@ -22,7 +22,6 @@ function SignUp() {
       password: values.Password,
       role: values.Role,
     };
-    console.log(data);
     axios({
       method: "post",
       url: String(BASE_URL + "/user/signup"),
@@ -66,7 +65,6 @@ function SignUp() {
 
               <Form.Item name="Role">
                 <Select placeholder="Select your role" allowClear>
-                  {/* <Option value="Staff">Staff</Option> */}
                   <Option value="Faculty">Faculty</Option>
                   {/* <Option value="staff">Staff</Option> */}
                   {/* <Option value="student">Student</Option> */}

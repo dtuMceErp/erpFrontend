@@ -195,11 +195,11 @@ function Dashboard(props) {
 
   const menu = (
     <Menu style={{ marginTop: "12px" }}>
-      <Menu.Item key="0">
+      {/* <Menu.Item key="0">
         <a href="#*">
           <UserOutlined /> Profile
         </a>
-      </Menu.Item>
+      </Menu.Item> */}
       <Menu.Item key="1" onClick={loggingOut}>
         <a href="#*">
           <LogoutOutlined /> Logout
@@ -283,7 +283,7 @@ function Dashboard(props) {
                         Deactivate
                       </Menu.Item>
                     </SubMenu>
-                    <SubMenu
+                    {/* <SubMenu
                       key="sub4"
                       icon={<VideoCameraOutlined />}
                       title="Meetings"
@@ -294,8 +294,8 @@ function Dashboard(props) {
                       <Menu.Item key="12" onClick={() => pageController(8)}>
                         Call
                       </Menu.Item>
-                    </SubMenu>
-                    <SubMenu
+                    </SubMenu> */}
+                    {/* <SubMenu
                       key="sub5"
                       icon={<TeamOutlined />}
                       title="Committee"
@@ -306,7 +306,7 @@ function Dashboard(props) {
                       <Menu.Item key="14" onClick={() => pageController(10)}>
                         Create
                       </Menu.Item>
-                    </SubMenu>
+                    </SubMenu> */}
                   </Menu>
                 );
               }

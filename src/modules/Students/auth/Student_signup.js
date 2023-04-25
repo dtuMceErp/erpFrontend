@@ -5,10 +5,12 @@ import Popup from "./Popup";
 import { BASE_URL } from "../../../@constant/config";
 import axios from "axios";
 import Navbar from "../../../views/Navbar/index";
+import { useHistory } from "react-router-dom";
 
 const FormItem = Form.Item;
 
 function Student_signup() {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const role = "Student";
 
@@ -32,7 +34,7 @@ function Student_signup() {
       .then((res) => {
         if (res.status === 201) {
           message.success("User Registration Successful");
-          togglePopup();
+          history.push("/login");
         }
       })
       .catch((err) => {
