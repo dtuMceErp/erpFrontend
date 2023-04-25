@@ -51,7 +51,7 @@ function OverviewTable(props) {
     } else {
       getData();
     }
-  }, []);
+  }, [StudentData]);
 
   const getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({

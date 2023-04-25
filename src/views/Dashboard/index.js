@@ -3,9 +3,9 @@ import React, { Suspense, useEffect, useState } from "react";
 import "./Dashboard.css";
 import { Layout, Menu, Dropdown, message } from "antd";
 import { useHistory } from "react-router-dom";
-// import StudentVerify from "../../modules/Admin/Components/Students Table/StudentVerify";
-// import Overview from "../../modules/Admin/Components/Students Table/Overview";
-// import StudentDelete from "../../modules/Admin/Components/Students Table/StudentDelete";
+import StudentVerify from "../../modules/Admin/Components/Students Table/StudentVerify";
+import Overview from "../../modules/Admin/Components/Students Table/Overview";
+import StudentDelete from "../../modules/Admin/Components/Students Table/StudentDelete";
 
 import Personal from "../../modules/Faculty/Personal";
 import ProfessionalActivities from "../../modules/Faculty/ProfessionalActivities";
@@ -17,9 +17,9 @@ import MeetingOverviewFaculity from "../../modules/Faculty/MeetingOverview";
 import MeetingCallFaculity from "../../modules/Faculty/MeetingCall";
 import MeetingEditFaculty from "../../modules/Faculty/MeetingEdit";
 
-// import FaculityOverview from "../../modules/Admin/Components/Faculity Tables/FaculityOverview";
-// import FaculityVerify from "../../modules/Admin/Components/Faculity Tables/FaculityVerify";
-// import FacultyDelete from "../../modules/Admin/Components/Faculity Tables/FacultyDelete";
+import FaculityOverview from "../../modules/Admin/Components/Faculity Tables/FaculityOverview";
+import FaculityVerify from "../../modules/Admin/Components/Faculity Tables/FaculityVerify";
+import FacultyDelete from "../../modules/Admin/Components/Faculity Tables/FacultyDelete";
 
 // import Meeting_Overview from "../../modules/Admin/Components/Meetings/Overview";
 // import Meeting_Call from "../../modules/Admin/Components/Meetings/Call";
@@ -112,17 +112,16 @@ function Dashboard(props) {
     if(x===1){
       return <AdminDashboard />
     }
-    return <NoticeController/>;
-    // if (x === 2) {
-    //   return <NoticeController />;
-    // } else if (x === 3) {
-    //   return <Overview />;
-    // } else if (x === 4) {
-    //   return <StudentVerify />;
-    // } else if (x === 5) {
-    //   return <FaculityOverview />;
-    // } else if (x === 6) {
-    //   return <FaculityVerify />;
+    if (x === 2) {
+      return <NoticeController />;
+    } else if (x === 3) {
+      return <Overview />;
+    } else if (x === 4) {
+      return <StudentVerify />;
+    } else if (x === 5) {
+      return <FaculityOverview />;
+    } else if (x === 6) {
+      return <FaculityVerify />;
     // } else if (x === 7) {
     //   return <Meeting_Overview />;
     // } else if (x == 8) {
@@ -131,11 +130,11 @@ function Dashboard(props) {
     //   return <Committee_Overview />;
     // } else if (x == 10) {
     //   return <Committee_Create />;
-    // } else if (x == 11) {
-    //   return <StudentDelete />;
-    // } else if (x == 12) {
-    //   return <FacultyDelete />;
-    // } else return <AdminDashboard />;
+    } else if (x === 11) {
+      return <StudentDelete />;
+    } else if (x === 12) {
+      return <FacultyDelete />;
+    } else return <AdminDashboard />;
   }
 
   function faculityPageController(x) {

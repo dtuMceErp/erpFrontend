@@ -82,10 +82,10 @@ function Overview() {
   };
 
   function setprojectData() {
-    let ProjectData = [];
-    StudentData.map(function (details, i) {
-      details.project_id.map(function (x) {
-        ProjectData.push({
+    let projectData = [];
+    StudentData.forEach(function(details) {
+      details.project_id.forEach(function(x) {
+        projectData.push({
           student_name: details.user_id.name,
           student_roll: details.roll_no,
           student_email: details.user_id.email,
@@ -96,17 +96,18 @@ function Overview() {
         });
       });
     });
-
+  
     dispatch({
       type: "SET_PROJECT_DATA",
-      projectData: ProjectData,
+      projectData: projectData,
     });
   }
+  
 
   function setachievementData() {
     let achievementData = [];
-    StudentData.map(function (details, i) {
-      details.achievement_id.map(function (x) {
+    StudentData.forEach(function(details) {
+      details.achievement_id.forEach(function(x) {
         achievementData.push({
           student_name: details.user_id.name,
           student_roll: details.roll_no,
@@ -118,17 +119,18 @@ function Overview() {
         });
       });
     });
-
+  
     dispatch({
       type: "SET_ACHIEVEMENT_DATA",
       achievementData: achievementData,
     });
   }
+  
 
   function setcertificationData() {
     let certificationData = [];
-    StudentData.map(function (details, i) {
-      details.certification_id.map(function (x) {
+    StudentData.forEach(function(details) {
+      details.certification_id.forEach(function(x) {
         certificationData.push({
           student_name: details.user_id.name,
           student_roll: details.roll_no,
@@ -140,16 +142,18 @@ function Overview() {
         });
       });
     });
+  
     dispatch({
       type: "SET_CERTIFICATION_DATA",
       certificationData: certificationData,
     });
   }
+  
 
   function setresearchData() {
     let researchData = [];
-    StudentData.map(function (details, i) {
-      details.research_id.map(function (x) {
+    StudentData.forEach(function(details) {
+      details.research_id.forEach(function(x) {
         researchData.push({
           student_name: details.user_id.name,
           student_roll: details.roll_no,
@@ -159,25 +163,26 @@ function Overview() {
           support_url: x.SupportURL,
           ongoing: x.isOngoing,
           publisher: x.publisher,
-          faculty: x.faculty ? x.faculty : "",
-          publicationDate:
-            x.publicationDate === null
-              ? "Ongoing"
-              : x.publicationDate.substring(0, 10),
+          faculty: x.faculty || "",
+          publicationDate: x.publicationDate === null
+            ? "Ongoing"
+            : x.publicationDate.substring(0, 10),
         });
       });
     });
-
+  
     dispatch({
       type: "SET_RESEARCH_DATA",
       researchData: researchData,
     });
   }
+  
 
   function setexperienceData() {
-    let experienceData = [];
-    StudentData.map(function (details, i) {
-      details.experience_id.map(function (x) {
+    const experienceData = [];
+    
+    StudentData.forEach((details) => {
+      details.experience_id.forEach((x) => {
         experienceData.push({
           student_name: details.user_id.name,
           student_roll: details.roll_no,
@@ -187,9 +192,9 @@ function Overview() {
           support_url: x.SupportURL,
           company: x.company,
           type: x.employmentType,
-          startDate: x.startDate.substring(0, 10),
+          startDate: x.startDate.slice(0, 10),
           ongoing: x.isOngoing,
-          endDate: x.endDate ? x.endDate.substring(0, 10) : "",
+          endDate: x.endDate ? x.endDate.slice(0, 10) : "",
         });
       });
     });
@@ -202,7 +207,6 @@ function Overview() {
 
   useEffect(() => {
     async function setAllData() {
-      console.log("q");
       getData();
       if (loading === false) {
         setprojectData();

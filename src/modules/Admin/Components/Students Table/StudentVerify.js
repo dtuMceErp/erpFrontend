@@ -120,7 +120,7 @@ function StudentVerify() {
   useEffect(() => {
     getData();
   }, 
-  // [updateNow, deleteNow]
+  [updateNow, deleteNow]
   );
 
   const getColumnSearchProps = (dataIndex) => ({

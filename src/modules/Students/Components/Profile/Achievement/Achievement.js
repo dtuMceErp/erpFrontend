@@ -86,7 +86,7 @@ function Achievement(props) {
         >
           <img
             style={{ marginLeft: "7px", marginBottom: "5px" }}
-            src="./assets/achievement.png"
+            src="./assets/Achievement.png"
             alt="img"
           />
           <div>Achievement</div>
